@@ -3,15 +3,17 @@
 namespace App\Exports;
 
 use App\Models\Absensi;
-use Illuminate\Support\Carbon;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Carbon;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
 class AbsensiExport implements FromView, ShouldAutoSize
 {
     protected $from_date;
+
     protected $to_date;
+
     protected $keyword;
 
     public function __construct($from_date, $to_date, $keyword)
@@ -20,7 +22,6 @@ class AbsensiExport implements FromView, ShouldAutoSize
         $this->to_date = $to_date;
         $this->keyword = $keyword;
     }
-
 
     public function view(): View
     {
@@ -42,7 +43,7 @@ class AbsensiExport implements FromView, ShouldAutoSize
         $absensis = $absensis->get();
 
         return view('excel.data-absensi', [
-            'absensis' => $absensis
+            'absensis' => $absensis,
         ]);
     }
 }

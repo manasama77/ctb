@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Absensi extends Model
 {
@@ -54,30 +53,29 @@ class Absensi extends Model
 
             $diff = $masuk->diff($pulang);
 
-            return $diff->h . " Jam " . $diff->i . " Menit";
+            return $diff->h.' Jam '.$diff->i.' Menit';
         }
 
-        return null;
     }
 
     public function getLokasiMasukGmapAttribute()
     {
-        return $this->lokasi_masuk ? 'https://maps.google.com/maps?q=' . $this->lokasi_masuk : null;
+        return $this->lokasi_masuk ? 'https://maps.google.com/maps?q='.$this->lokasi_masuk : null;
     }
 
     public function getLokasiPulangGmapAttribute()
     {
-        return $this->lokasi_pulang ? 'https://maps.google.com/maps?q=' . $this->lokasi_pulang : null;
+        return $this->lokasi_pulang ? 'https://maps.google.com/maps?q='.$this->lokasi_pulang : null;
     }
 
     public function getFotoMasukAssetAttribute()
     {
-        return $this->foto_masuk ? asset('storage/' . $this->foto_masuk) : null;
+        return $this->foto_masuk ? asset('storage/'.$this->foto_masuk) : null;
     }
 
     public function getFotoPulangAssetAttribute()
     {
-        return $this->foto_pulang ? asset('storage/' . $this->foto_pulang) : null;
+        return $this->foto_pulang ? asset('storage/'.$this->foto_pulang) : null;
     }
 
     public function user()

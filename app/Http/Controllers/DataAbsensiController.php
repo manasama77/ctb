@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Absensi;
-use Illuminate\Http\Request;
 use App\Exports\AbsensiExport;
+use App\Models\Absensi;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Http\Resources\DataAbsensiResource;
-use Exception;
 
 class DataAbsensiController extends Controller
 {
@@ -25,7 +24,7 @@ class DataAbsensiController extends Controller
 
         if ($keyword) {
             $data = $data->whereHas('user', function ($query) use ($keyword) {
-                $query->where('name', 'like', '%' . $keyword . '%');
+                $query->where('name', 'like', '%'.$keyword.'%');
             });
         }
 
@@ -33,7 +32,7 @@ class DataAbsensiController extends Controller
             $data = $data->whereBetween('created_at', [$from_date, $to_date]);
         }
 
-        if(Auth::user()->role == 'karyawan') {
+        if (Auth::user()->role == 'karyawan') {
             $data = $data->where('user_id', Auth::id());
         }
 
@@ -67,14 +66,14 @@ class DataAbsensiController extends Controller
         $to_date = $request->to_date ? Carbon::parse($request->to_date) : now()->endOfMonth();
         $keyword = $request->keyword ?? null;
 
-        $file_name = $from_date->format('Y-m-d') . '-' . $to_date->format('Y-m-d') . '-Absensi-.xlsx';
+        $file_name = $from_date->format('Y-m-d').'-'.$to_date->format('Y-m-d').'-Absensi-.xlsx';
 
         return Excel::download(new AbsensiExport($from_date, $to_date, $keyword), $file_name);
     }
 
     public function in()
     {
-        $title = "Absen Masuk";
+        $title = 'Absen Masuk';
 
         return view('pages.data-absensi-karyawan-in', [
             'title' => $title,
@@ -94,7 +93,7 @@ class DataAbsensiController extends Controller
                 ->first();
 
             if ($check) {
-                if($check->jam_masuk) {
+                if ($check->jam_masuk) {
                     return redirect()->route('data-absensi.in')->withErrors('Anda sudah absen masuk hari ini');
                 }
             }
@@ -108,15 +107,16 @@ class DataAbsensiController extends Controller
             ]);
 
             return redirect()->route('data-absensi')->with('success', 'Absen masuk berhasil');
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             dd($e->getMessage());
-            return redirect()->route('data-absensi.in')->withErrors('Absen masuk gagal: ' . $e->getMessage());
+
+            return redirect()->route('data-absensi.in')->withErrors('Absen masuk gagal: '.$e->getMessage());
         }
     }
 
     public function out()
     {
-        $title = "Absen Pulang";
+        $title = 'Absen Pulang';
 
         return view('pages.data-absensi-karyawan-out', [
             'title' => $title,
@@ -135,13 +135,13 @@ class DataAbsensiController extends Controller
                 ->whereDate('tanggal', Carbon::now()->format('Y-m-d'))
                 ->first();
 
-            if (!$check) {
+            if (! $check) {
                 return redirect()->route('data-absensi.out')->withErrors('Anda belum absen masuk hari ini');
             }
 
-            if(!$check->jam_masuk) {
+            if (! $check->jam_masuk) {
                 return redirect()->route('data-absensi.out')->withErrors('Anda belum absen masuk hari ini');
-            }elseif($check->jam_pulang) {
+            } elseif ($check->jam_pulang) {
                 return redirect()->route('data-absensi.out')->withErrors('Anda sudah absen pulang hari ini');
             }
 
@@ -152,9 +152,10 @@ class DataAbsensiController extends Controller
             ]);
 
             return redirect()->route('data-absensi')->with('success', 'Absen pulang berhasil');
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             dd($e->getMessage());
-            return redirect()->route('data-absensi.in')->withErrors('Absen pulang gagal: ' . $e->getMessage());
+
+            return redirect()->route('data-absensi.in')->withErrors('Absen pulang gagal: '.$e->getMessage());
         }
     }
 }

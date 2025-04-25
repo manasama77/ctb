@@ -1,11 +1,10 @@
 <?php
 
-use Livewire\Volt\Volt;
-use App\Livewire\Dashboard;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\DataAbsensiController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Middleware\AdminMiddleware;
+use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 
 Route::get('/', function () {
     return redirect()->route('dashboard');
@@ -21,7 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('data-absensi/out', [DataAbsensiController::class, 'out'])->name('data-absensi.out');
     Route::post('data-absensi/out', [DataAbsensiController::class, 'out_store'])->name('data-absensi.out.store');
 
-    Route::middleware(AdminMiddleware::class)->group(function() {
+    Route::middleware(AdminMiddleware::class)->group(function () {
         Route::get('karyawan', [KaryawanController::class, 'index'])->name('karyawan');
         Route::get('karyawan/create', [KaryawanController::class, 'create'])->name('karyawan.create');
         Route::post('karyawan/store', [KaryawanController::class, 'store'])->name('karyawan.store');
@@ -39,4 +38,4 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

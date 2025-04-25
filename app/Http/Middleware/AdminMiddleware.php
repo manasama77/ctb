@@ -18,6 +18,7 @@ class AdminMiddleware
         if ($request->user() && $request->user()->role !== 'admin') {
             return redirect()->route('dashboard')->withErrors('You do not have admin access.');
         }
+
         return $next($request);
     }
 }

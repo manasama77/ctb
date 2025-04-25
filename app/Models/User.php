@@ -77,10 +77,10 @@ class User extends Authenticatable
 
     public function getProfilePictureAssetAttribute()
     {
-        if ($this->profile_picture && file_exists(public_path('storage/' . $this->profile_picture))) {
-            return asset('storage/' . $this->profile_picture);
+        if ($this->profile_picture && file_exists(public_path('storage/'.$this->profile_picture))) {
+            return asset('storage/'.$this->profile_picture);
         }
 
-        return "https://static-00.iconduck.com/assets.00/profile-default-icon-512x511-v4sw4m29.png";
+        return 'https://static-00.iconduck.com/assets.00/profile-default-icon-512x511-v4sw4m29.png';
     }
 }

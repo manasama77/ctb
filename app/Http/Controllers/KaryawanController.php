@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
+use App\Http\Requests\KaryawanEditRequest;
+use App\Http\Requests\KaryawanRequest;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use App\Http\Requests\KaryawanRequest;
-use App\Http\Requests\KaryawanEditRequest;
 
 class KaryawanController extends Controller
 {
@@ -21,7 +21,7 @@ class KaryawanController extends Controller
 
         if ($keyword) {
             $data = $data->where(function ($query) use ($keyword) {
-                $query->where('name', 'like', '%' . $keyword . '%');
+                $query->where('name', 'like', '%'.$keyword.'%');
             });
         }
 
@@ -36,7 +36,7 @@ class KaryawanController extends Controller
 
     public function create()
     {
-        $title = "Tambah Karyawan";
+        $title = 'Tambah Karyawan';
 
         return view('pages.karyawan-create', [
             'title' => $title,
@@ -44,15 +44,15 @@ class KaryawanController extends Controller
     }
 
     public function store(KaryawanRequest $request)
-     {
+    {
         $lock = Cache::lock('karyawan-create-'.Auth::user()->id, 10);
 
-        if(!$lock->get()) {
+        if (! $lock->get()) {
             return redirect()->back()->withErrors('Sedang ada proses lain, silahkan coba lagi nanti');
         }
 
         try {
-            $data = new User();
+            $data = new User;
             $data->username = $request->username;
             $data->password = bcrypt($request->password);
             $data->name = $request->name;
@@ -61,19 +61,20 @@ class KaryawanController extends Controller
             $data->role = $request->role;
             $data->profile_picture = null;
             $data->save();
-        }catch(Exception $e) {
+        } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage())->withInput();
-        }finally {
+        } finally {
             $lock->release();
 
             Cache::flush();
+
             return redirect()->route('karyawan')->with('success', 'Berhasil menambahkan karyawan');
         }
-     }
+    }
 
     public function edit(User $user)
     {
-        $title = "Edit Karyawan";
+        $title = 'Edit Karyawan';
 
         return view('pages.karyawan-edit', [
             'title' => $title,
@@ -91,14 +92,14 @@ class KaryawanController extends Controller
             $user->save();
 
             return redirect()->route('karyawan')->with('success', 'Update karyawan berhasil');
-        }catch(Exception $e) {
+        } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage())->withInput();
         }
     }
 
     public function reset_password(User $user)
     {
-        $title = "Reset Password Karyawan";
+        $title = 'Reset Password Karyawan';
 
         return view('pages.karyawan-reset-password', [
             'title' => $title,
@@ -116,13 +117,13 @@ class KaryawanController extends Controller
             $user->save();
 
             return redirect()->route('karyawan')->with('success', 'Reset password karyawan berhasil');
-        }catch(Exception $e) {
+        } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage())->withInput();
         }
-     }
+    }
 
-     public function destroy(User $user)
-     {
+    public function destroy(User $user)
+    {
         try {
             $user->delete();
 
@@ -136,5 +137,5 @@ class KaryawanController extends Controller
             'message' => $e->getMessage(),
             ], 500);
         }
-     }
+    }
 }
