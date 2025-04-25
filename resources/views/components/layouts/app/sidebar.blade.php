@@ -22,10 +22,12 @@
                     :current="request()->routeIs('data-absensi')" wire:navigate>
                     {{ __('Data Absensi') }}
                 </flux:navlist.item>
+                @if(auth()->user()->isAdmin())
                 <flux:navlist.item icon="user-group" :href="route('karyawan')" :current="request()->routeIs('karyawan')"
                     wire:navigate>
                     {{ __('Karyawan') }}
                 </flux:navlist.item>
+                @endif
             </flux:navlist.group>
         </flux:navlist>
 

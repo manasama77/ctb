@@ -41,6 +41,7 @@
                                 <tr>
                                     <th class="text-center">#</th>
                                     <th class="text-center">Foto</th>
+                                    <th class="text-center">Username</th>
                                     <th class="text-center">Nama Karyawan</th>
                                     <th class="text-center">Telepon</th>
                                     <th class="text-center">Email</th>
@@ -54,23 +55,24 @@
                             <tbody>
                                 @if ($datas->isEmpty())
                                     <tr>
-                                        <td colspan="8" class="text-center py-4">Tidak ada data absensi</td>
+                                        <td colspan="9" class="text-center py-4">Tidak ada data absensi</td>
                                     </tr>
                                 @endif
                                 @foreach ($datas as $karyawan)
                                     <tr>
                                         <td class="text-center">{{ $datas->firstItem() + $loop->index }}</td>
-                                        <td class="flex justify-center">
+                                        <td>
                                             <img src="{{ $karyawan->profile_picture_asset }}" alt="Foto Karyawan"
                                                 class="size-10 rounded-full object-cover">
                                         </td>
+                                        <td class="text-center">{{ $karyawan->username }}</td>
                                         <td class="text-center">{{ $karyawan->name }}</td>
                                         <td class="text-center">{{ $karyawan->phone }}</td>
                                         <td class="text-center">{{ $karyawan->email }}</td>
                                         <td class="text-center">{{ $karyawan->role }}</td>
                                         <td class="text-center">{{ $karyawan->created_at->diffForHumans() }}</td>
                                         <td>
-                                            <div class="flex justify-center items-center gap-2">
+                                            <div class="flex flex-col justify-center items-center gap-2">
                                                 @if (auth()->user()->id === $karyawan->id)
                                                     <a href="{{ route('settings.profile') }}"
                                                         class="btn btn-sm btn-info">

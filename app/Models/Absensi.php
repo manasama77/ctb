@@ -21,8 +21,6 @@ class Absensi extends Model
 
     protected $casts = [
         'tanggal' => 'date',
-        'jam_masuk' => 'time',
-        'jam_pulang' => 'time',
     ];
 
     protected $appends = [
@@ -74,12 +72,12 @@ class Absensi extends Model
 
     public function getFotoMasukAssetAttribute()
     {
-        return $this->foto_masuk ? asset('storage/foto/' . $this->foto_masuk) : null;
+        return $this->foto_masuk ? asset('storage/' . $this->foto_masuk) : null;
     }
 
     public function getFotoPulangAssetAttribute()
     {
-        return $this->foto_pulang ? asset('storage/foto/' . $this->foto_pulang) : null;
+        return $this->foto_pulang ? asset('storage/' . $this->foto_pulang) : null;
     }
 
     public function user()
