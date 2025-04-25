@@ -50,6 +50,10 @@ class User extends Authenticatable
         ];
     }
 
+    protected $append = [
+        'profile_picture_asset',
+    ];
+
     /**
      * Get the user's initials
      */
@@ -64,5 +68,14 @@ class User extends Authenticatable
     public function absensi()
     {
         return $this->hasMany(Absensi::class);
+    }
+
+    public function getProfilePictureAssetAttribute()
+    {
+        if ($this->profile_picture && file_exists(public_path('storage/' . $this->profile_picture))) {
+            return asset('storage/' . $this->profile_picture);
+        }
+
+        return "https://static-00.iconduck.com/assets.00/profile-default-icon-512x511-v4sw4m29.png";
     }
 }

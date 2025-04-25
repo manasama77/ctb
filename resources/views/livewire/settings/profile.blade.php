@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 new class extends Component {
     use WithFileUploads;
 
+    public string $username = '';
     public string $name = '';
     public string $phone = '';
     public string $email = '';
@@ -23,6 +24,7 @@ new class extends Component {
      */
     public function mount(): void
     {
+        $this->username = Auth::user()->username;
         $this->name = Auth::user()->name;
         $this->phone = Auth::user()->phone;
         $this->email = Auth::user()->email;
@@ -110,6 +112,8 @@ new class extends Component {
 
     <x-settings.layout :heading="__('Profile')" :subheading="__('Update your name and email address')">
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
+            <flux:input wire:model="username" :label="__('Username')" type="text" disabled />
+
             <flux:input wire:model="name" :label="__('Name')" type="text" required autofocus autocomplete="name" />
 
             <flux:input wire:model="phone" :label="__('Phone')" type="tel" required autocomplete="phone" />

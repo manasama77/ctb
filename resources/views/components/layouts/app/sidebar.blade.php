@@ -15,12 +15,16 @@
 
         <flux:navlist variant="outline">
             <flux:navlist.group :heading="__('Menu')" class="grid">
-                <flux:navlist.item icon="home" :href="route('dashboard')"
-                    :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}
+                <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
+                    wire:navigate>{{ __('Dashboard') }}
                 </flux:navlist.item>
                 <flux:navlist.item icon="calendar-days" :href="route('data-absensi')"
                     :current="request()->routeIs('data-absensi')" wire:navigate>
                     {{ __('Data Absensi') }}
+                </flux:navlist.item>
+                <flux:navlist.item icon="user-group" :href="route('karyawan')" :current="request()->routeIs('karyawan')"
+                    wire:navigate>
+                    {{ __('Karyawan') }}
                 </flux:navlist.item>
             </flux:navlist.group>
         </flux:navlist>
@@ -100,7 +104,8 @@
                 <flux:menu.separator />
 
                 <flux:menu.radio.group>
-                    <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>{{ __('Settings') }}
+                    <flux:menu.item :href="route('settings.profile')" icon="cog" wire:navigate>
+                        {{ __('Settings') }}
                     </flux:menu.item>
                 </flux:menu.radio.group>
 
