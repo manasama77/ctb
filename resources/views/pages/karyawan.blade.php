@@ -36,7 +36,7 @@
                     @endif
 
                     <div class="w-full overflow-x-auto">
-                        <table class="table table-striped table-sm">
+                        <table class="table table-sm">
                             <thead>
                                 <tr>
                                     <th class="text-center">#</th>

@@ -132,15 +132,17 @@ new #[Layout('components.layouts.app')] #[Title('Dashboard')] class extends Comp
         @if (auth()->user()->role == 'admin')
             <div class="grid auto-rows-min gap-4 md:grid-cols-3">
                 <x-cards.base-card>
-                    <h1 class="text-lg font-semibold mb-2">Belum Absen Hari Ini</h1>
+                    <h1 class="text-lg font-semibold mb-2 text-base-100 dark:text-white">Belum Absen Hari Ini</h1>
                     <table
-                        class="w-full table-auto border-collapse border border-neutral-200 dark:border-neutral-700 overflow-auto text-sm">
+                        class="w-full table-auto border-collapse border border-neutral-200 dark:border-neutral-700 overflow-auto text-sm ">
                         <thead>
                             <tr class="bg-gray-100 dark:bg-neutral-800">
                                 <th
-                                    class="border border-neutral-200 dark:border-neutral-700 py-2 text-center max-w-[10px]">
+                                    class="border border-neutral-200 dark:border-neutral-700 py-2 text-center max-w-[10px] text-base-100 dark:text-white bg-neutral-300 ">
                                     #</th>
-                                <th class="border border-neutral-200 dark:border-neutral-700 py-2 px-4 text-left">Nama
+                                <th
+                                    class="border border-neutral-200 dark:border-neutral-700 py-2 px-4 text-left text-base-100 dark:text-white bg-neutral-300">
+                                    Nama
                                 </th>
                             </tr>
                         </thead>
@@ -148,14 +150,14 @@ new #[Layout('components.layouts.app')] #[Title('Dashboard')] class extends Comp
                             @if ($data_belum_absen->isEmpty())
                                 <tr class="border-b border-neutral-200 dark:border-neutral-700 bg-neutral-700/50">
                                     <td colspan="2"
-                                        class="border border-neutral-200 dark:border-neutral-700 py-2 text-center">
+                                        class="border border-neutral-200 dark:border-neutral-700 py-2 text-center text-base-100 dark:text-white bg-neutral-300 dark:!bg-neutral-700/50">
                                         Tidak ada data
                                     </td>
                                 </tr>
                             @endif
                             @foreach ($data_belum_absen as $data)
                                 <tr class="border-b border-neutral-200 dark:border-neutral-700 bg-neutral-700/50">
-                                    <td class="border border-neutral-200 dark:border-neutral-700 py-2 text-center">
+                                    <td class="border border-neutral-200 dark:border-neutral-700 py-2 text-center ">
                                         {{ $loop->iteration }}
                                     </td>
                                     <td class="border border-neutral-200 dark:border-neutral-700 py-2 px-4">
@@ -168,15 +170,17 @@ new #[Layout('components.layouts.app')] #[Title('Dashboard')] class extends Comp
                 </x-cards.base-card>
 
                 <x-cards.base-card>
-                    <h1 class="text-lg font-semibold mb-2">Sudah Absen Masuk Hari Ini</h1>
+                    <h1 class="text-lg font-semibold mb-2 text-base-100 dark:text-white">Sudah Absen Masuk Hari Ini</h1>
                     <table
                         class="w-full table-auto border-collapse border border-neutral-200 dark:border-neutral-700 overflow-auto text-sm">
                         <thead>
                             <tr class="bg-gray-100 dark:bg-neutral-800">
                                 <th
-                                    class="border border-neutral-200 dark:border-neutral-700 py-2 text-center max-w-[10px]">
+                                    class="border border-neutral-200 dark:border-neutral-700 py-2 text-center max-w-[10px] text-base-100 dark:text-white bg-neutral-300">
                                     #</th>
-                                <th class="border border-neutral-200 dark:border-neutral-700 py-2 px-4 text-left">Nama
+                                <th
+                                    class="border border-neutral-200 dark:border-neutral-700 py-2 px-4 text-left text-base-100 dark:text-white bg-neutral-300">
+                                    Nama
                                 </th>
                             </tr>
                         </thead>
@@ -184,7 +188,7 @@ new #[Layout('components.layouts.app')] #[Title('Dashboard')] class extends Comp
                             @if ($data_absen_masuk->isEmpty())
                                 <tr class="border-b border-neutral-200 dark:border-neutral-700 bg-neutral-700/50">
                                     <td colspan="2"
-                                        class="border border-neutral-200 dark:border-neutral-700 py-2 text-center">
+                                        class="border border-neutral-200 dark:border-neutral-700 py-2 text-center text-base-100 dark:text-white bg-neutral-300 dark:!bg-neutral-700/50">
                                         Tidak ada data
                                     </td>
                                 </tr>
@@ -204,15 +208,18 @@ new #[Layout('components.layouts.app')] #[Title('Dashboard')] class extends Comp
                 </x-cards.base-card>
 
                 <x-cards.base-card>
-                    <h1 class="text-lg font-semibold mb-2">Sudah Absen Pulang Hari Ini</h1>
+                    <h1 class="text-lg font-semibold mb-2 text-base-100 dark:text-white">Sudah Absen Pulang Hari Ini
+                    </h1>
                     <table
                         class="w-full table-auto border-collapse border border-neutral-200 dark:border-neutral-700 overflow-auto text-sm">
                         <thead>
                             <tr class="bg-gray-100 dark:bg-neutral-800">
                                 <th
-                                    class="border border-neutral-200 dark:border-neutral-700 py-2 text-center max-w-[10px]">
+                                    class="border border-neutral-200 dark:border-neutral-700 py-2 text-center max-w-[10px] text-base-100 dark:text-white bg-neutral-300">
                                     #</th>
-                                <th class="border border-neutral-200 dark:border-neutral-700 py-2 px-4 text-left">Nama
+                                <th
+                                    class="border border-neutral-200 dark:border-neutral-700 py-2 px-4 text-left text-base-100 dark:text-white bg-neutral-300">
+                                    Nama
                                 </th>
                             </tr>
                         </thead>
@@ -220,7 +227,7 @@ new #[Layout('components.layouts.app')] #[Title('Dashboard')] class extends Comp
                             @if ($data_absen_pulang->isEmpty())
                                 <tr class="border-b border-neutral-200 dark:border-neutral-700 bg-neutral-700/50">
                                     <td colspan="2"
-                                        class="border border-neutral-200 dark:border-neutral-700 py-2 text-center">
+                                        class="border border-neutral-200 dark:border-neutral-700 py-2 text-center dark:!bg-neutral-700/50">
                                         Tidak ada data
                                     </td>
                                 </tr>

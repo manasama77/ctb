@@ -3,7 +3,7 @@
 
 @plugin "flyonui" {
   themes:
-    flux --default,
+    light --default,
     flux --prefersdark,
     flux;
 }
@@ -109,4 +109,50 @@ select:focus[data-flux-control] {
   --border: 2px;
   --depth: 1;
   --noise: 0;
+}
+
+.card {
+  @apply bg-white dark:bg-neutral-700 border-1 border-base-100 text-base-300 dark:text-white;
+}
+
+.card-title {
+  @apply text-base-100 dark:text-white;
+}
+
+.label-text {
+  @apply text-base-100 dark:text-white;
+}
+
+.input {
+  @apply bg-neutral-100 dark:bg-neutral-600 text-base-300 dark:text-white placeholder:text-neutral-400 dark:placeholder:text-neutral-400;
+}
+
+table {
+  thead {
+    tr {
+      th {
+        @apply text-base-300 dark:text-white font-semibold dark:!bg-neutral-800;
+      }
+    }
+  }
+}
+
+.modal-content {
+  @apply !bg-neutral-100 dark:!bg-neutral-600;
+
+  .modal-title {
+    @apply !text-base-300 dark:!text-white;
+  }
+}
+
+.radio {
+  @apply border-neutral-300 p-0.5;
+
+  &:checked {
+    @apply bg-neutral-400;
+
+    &::before {
+      @apply bg-accent;
+    }
+  }
 }

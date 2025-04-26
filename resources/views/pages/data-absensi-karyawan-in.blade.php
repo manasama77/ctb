@@ -3,13 +3,6 @@
         <x-page-title :title="$title" />
         <div class="flex flex-col w-full md:w-sm mx-auto">
             <div class="card">
-                <div class="card-header flex justify-between items-center">
-                    <div>
-                        <a href="{{ route('data-absensi') }}" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Kembali
-                        </a>
-                    </div>
-                </div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -43,10 +36,13 @@
                             class="min-h-36 dark:text-white h-auto max-w-lg text-black border rounded-lg">
                         </div>
 
-                        <div>
+                        <div class="flex justify-between items-center">
                             <button type="submit" class="btn btn-primary w-full md:w-auto">
                                 <i class="fas fa-save"></i> Simpan
                             </button>
+                            <a href="{{ route('data-absensi') }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Kembali
+                            </a>
                         </div>
                     </form>
                 </div>
@@ -76,11 +72,11 @@
                         locationInput.value = `${latitude}, ${longitude}`;
                     }, function(error) {
                         console.error('Error getting location:', error);
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Unable to retrieve location. Please try again.',
-                            text: error.message,
-                        });
+                        // Swal.fire({
+                        //     icon: 'error',
+                        //     title: 'Unable to retrieve location. Please try again.',
+                        //     text: error.message,
+                        // });
                     });
                 } else {
                     alert('Geolocation is not supported by this browser.');

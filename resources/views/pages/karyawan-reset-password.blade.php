@@ -3,13 +3,6 @@
         <x-page-title :title="$title" />
         <div class="flex flex-col w-full md:w-sm mx-auto">
             <div class="card">
-                <div class="card-header flex justify-between items-center">
-                    <div>
-                        <a href="{{ route('karyawan') }}" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Kembali
-                        </a>
-                    </div>
-                </div>
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -40,10 +33,13 @@
                                 placeholder="Konfirmasi Password" class="input" required />
                         </div>
 
-                        <div>
+                        <div class="flex justify-between items-center">
                             <button type="submit" class="btn btn-primary w-full md:w-auto">
                                 <i class="fas fa-save"></i> Simpan
                             </button>
+                            <a href="{{ route('karyawan') }}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Kembali
+                            </a>
                         </div>
                     </form>
                 </div>

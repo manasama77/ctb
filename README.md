@@ -16,7 +16,7 @@ This is a simple attendance web application
 - Frontend: [Tailwind CSS 4](https://tailwindcss.com/)
 - Frontend component: [FlyonUI 2](https://flyonui.com/)
 - Backend: [Livewire 3](https://livewire.laravel.com/)
-- Livewire Package: [\*](https://livewire.laravel.com/docs/volt#installation)
+- Livewire Package: [Volt \*](https://livewire.laravel.com/docs/volt#installation)
 
 ## Installation
 

@@ -22,11 +22,11 @@
                     :current="request()->routeIs('data-absensi')" wire:navigate>
                     {{ __('Data Absensi') }}
                 </flux:navlist.item>
-                @if(auth()->user()->isAdmin())
-                <flux:navlist.item icon="user-group" :href="route('karyawan')" :current="request()->routeIs('karyawan')"
-                    wire:navigate>
-                    {{ __('Karyawan') }}
-                </flux:navlist.item>
+                @if (auth()->user()->isAdmin())
+                    <flux:navlist.item icon="user-group" :href="route('karyawan')"
+                        :current="request()->routeIs('karyawan')" wire:navigate>
+                        {{ __('Karyawan') }}
+                    </flux:navlist.item>
                 @endif
             </flux:navlist.group>
         </flux:navlist>
@@ -36,7 +36,8 @@
         <!-- Desktop User Menu -->
         <flux:dropdown position="bottom" align="start">
             <flux:profile :name="auth()->user()->name" :initials="auth()->user()->initials()"
-                icon-trailing="chevrons-up-down" />
+                icon-trailing="chevrons-up-down"
+                class="bg-neutral-300 hover:!bg-neutral-200 dark:bg-neutral-800 hover:dark:!bg-neutral-700 transition duration-300 ease-in-out" />
 
             <flux:menu class="w-[220px]">
                 <flux:menu.radio.group>
@@ -50,8 +51,8 @@
                             </span>
 
                             <div class="grid flex-1 text-start text-sm leading-tight">
-                                <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
-                                <span class="truncate text-xs">{{ auth()->user()->email }}</span>
+                                <span class="truncate font-semibold text-base-300 dark:text-white">{{ auth()->user()->name }}</span>
+                                <span class="truncate text-xs text-base-100 dark:text-neutral-300">{{ auth()->user()->email }}</span>
                             </div>
                         </div>
                     </div>

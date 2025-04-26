@@ -37,7 +37,7 @@
                             </div>
                             <div>
                                 <label class="label-text" for="keyword">Karyawan</label>
-                                <input type="text" class="input" id="keyword" name="keyword"
+                                <input type="text" class="input " id="keyword" name="keyword"
                                     placeholder="Nama Karyawan" value="{{ $keyword }}" />
                             </div>
                             <div>
@@ -64,7 +64,7 @@
                 @endif
                 <div class="card-body">
                     <div class="w-full overflow-x-auto">
-                        <table class="table table-striped table-sm">
+                        <table class="table table-sm">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -136,7 +136,7 @@
         <div id="modal-detail"
             class="overlay modal overlay-open:opacity-100 overlay-open:duration-300 hidden [--is-layout-affect:true] overlay-backdrop-open:bg-neutral-800/80 "
             role="dialog" tabindex="-1">
-            <div class="modal-dialog overlay-open:opacity-100 overlay-open:duration-300">
+            <div class="modal-dialog overlay-open:opacity-100 overlay-open:duration-300 !bg-transparent">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title">Detail</h3>
