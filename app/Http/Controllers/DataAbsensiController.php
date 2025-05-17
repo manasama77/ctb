@@ -108,8 +108,6 @@ class DataAbsensiController extends Controller
 
             return redirect()->route('data-absensi')->with('success', 'Absen masuk berhasil');
         } catch (Exception $e) {
-            dd($e->getMessage());
-
             return redirect()->route('data-absensi.in')->withErrors('Absen masuk gagal: '.$e->getMessage());
         }
     }
@@ -153,8 +151,6 @@ class DataAbsensiController extends Controller
 
             return redirect()->route('data-absensi')->with('success', 'Absen pulang berhasil');
         } catch (Exception $e) {
-            dd($e->getMessage());
-
             return redirect()->route('data-absensi.in')->withErrors('Absen pulang gagal: '.$e->getMessage());
         }
     }
