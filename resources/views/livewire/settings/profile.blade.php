@@ -1,13 +1,15 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Http\Request;
+use Livewire\Volt\Component;
+use Livewire\WithFileUploads;
+use Illuminate\Validation\Rule;
+use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Validation\Rule;
-use Livewire\WithFileUploads;
-use Livewire\Volt\Component;
-use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 new class extends Component {
     use WithFileUploads;
@@ -47,11 +49,12 @@ new class extends Component {
 
         $user->fill($validated);
 
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
+        // if ($user->isDirty('email')) {
+        //     $user->email_verified_at = null;
+        // }
 
-        if ($this->profile_picture) {
+        // if ($this->profile_picture != $request->profile_picture) {
+        if ($this->profile_picture instanceof TemporaryUploadedFile) {
             $old_profile_picture = $user->profile_picture;
 
             if ($old_profile_picture) {
